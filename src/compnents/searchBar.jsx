@@ -42,6 +42,13 @@ function SearchBar() {
       setIsLoading(false)
     }
   };
+
+  const handleKeypress = e => {
+    //it triggers by pressing the enter key
+  if (e.code === "Enter") {
+    onSubmitHandler();
+  }
+}
   const columns = [
     {
       name: "Book Cover",
@@ -74,7 +81,8 @@ function SearchBar() {
         <input
           style={{ width: "100%", padding: "15px" }}
           type="text"
-          placeholder="Enter Book title here"
+          placeholder="Please Enter a Book Title to search"
+          onKeyPress={handleKeypress}
           onChange={onChangeHandler}
         />
         <button
@@ -95,6 +103,10 @@ function SearchBar() {
         pagination
         noHeader
       />}
+      {allData && allData.length<=0 && 
+      <>
+      <p>There is no data to display.</p>
+      </>}
     </div>
   );
 }
